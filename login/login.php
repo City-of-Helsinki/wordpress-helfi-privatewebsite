@@ -16,12 +16,18 @@ function helsinki_privatewebsite_login_template( $template ) {
 		wp_redirect( trailingslashit( home_url() ) . '?query=' . $forwarding_url , '302' );
 		exit;
 	}
+	helsinki_login_hooks();
 	return PLUGIN_PATH . 'login/index.php';
 }
 
 add_filter('lostpassword_redirect', __NAMESPACE__ . '\\helsinki_privatewebsite_lostpassword_redirect');
 function helsinki_privatewebsite_lostpassword_redirect($redirect) {
 	return trailingslashit( home_url() ) . '?checkemail=confirm';
+}
+
+add_action('after_password_reset', __NAMESPACE__ . '\\helsinki_privatewebsite_after_password_reset');
+function helsinki_privatewebsite_after_password_reset() {
+	wp_redirect( trailingslashit( home_url() )  . '?action=resetpass');
 }
 
 function helsinki_privatewebsite_login_page_data() {
@@ -39,37 +45,61 @@ function helsinki_privatewebsite_login_page_data() {
 	);
 }
 
-add_action( 'helsinki_login_head', 'wp_enqueue_scripts', 1 );
-add_action( 'helsinki_login_head', 'wp_resource_hints', 2 );
-add_action( 'helsinki_login_head', 'locale_stylesheet' );
-add_action( 'helsinki_login_head', 'wp_print_styles', 7 );
-add_action( 'helsinki_login_head', 'wp_print_head_scripts', 8 );
-add_action( 'helsinki_login_head', 'wp_site_icon', 99 );
+add_action('wp_login_failed', __NAMESPACE__ . '\\helsinki_privatewebsite_login_failed', 10, 2);
+function helsinki_privatewebsite_login_failed( $username, $error ) {
+	$referrer = $_SERVER['HTTP_REFERER'];
+	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+		$url = parse_url($referrer);
+		$args = array();
+		parse_str($url['query'], $args);
+		var_dump($args);
+		exit;
+		wp_redirect( $referrer . '?login=failed' );
+		exit;
+	}
+}
 
-//add_action( 'helsinki_login_header', __NAMESPACE__ . '\\helsinki_login_site_title' );
+add_filter( 'authenticate', __NAMESPACE__ . '\\helsinki_privatewebsite_authenticate_username_password', 30, 3);
+function helsinki_privatewebsite_authenticate_username_password( $user, $username, $password )
+{
+    if ( is_a($user, 'WP_User') ) { return $user; }
 
-//add_action('helsinki_header_top', 'helsinki_header_skip', 5);
-//add_action('helsinki_header_top', 'helsinki_topbar', 10);
-//add_filter('body_class', 'helsinki_topbar_body_class', 10);
+    if ( empty($username) || empty($password) )
+    {
+        $error = new \WP_Error('authentication_failed', __('<strong>ERROR</strong>: Invalid username or incorrect password.'));
+        return $error;
+    }
+}
 
-add_action('helsinki_login_header', 'helsinki_header_logo', 10);
-//add_action('helsinki_header', 'helsinki_header_mobile_panel_toggle', 50);
-//add_action('helsinki_header_bottom', 'helsinki_header_main_menu', 20);
-//add_action('helsinki_header_bottom', 'helsinki_header_mobile_panel', 30);
+add_action('helsinki_header_top', __NAMESPACE__ . '\\helsinki_privatewebsite_logout_bar', 9);
 
-//add_action('helsinki_header_mobile_panel', 'helsinki_header_mobile_menu', 20);
-//add_action('helsinki_header_mobile_panel', 'helsinki_header_mobile_links', 30);
+//add_action('after_theme_setup', __NAMESPACE__ . '\\helsinki_login_hooks');
 
-//if ( apply_filters( 'helsinki_header_languages_enabled', false ) ) {
-add_action( 'helsinki_login_header', 'helsinki_header_languages', 20 );
-//add_action('helsinki_header_mobile_panel', 'helsinki_header_languages', 10);
-//}
 
-add_action( 'helsinki_login_main', __NAMESPACE__ . '\\helsinki_login_notification', 10);
-add_action( 'helsinki_login_main', __NAMESPACE__ . '\\helsinki_login_content', 10 );
-add_action( 'helsinki_login_footer_top', __NAMESPACE__ . '\\helsinki_login_koros' );
-add_action( 'helsinki_login_footer', 'helsinki_footer_logo' );
-add_action( 'helsinki_login_footer', 'helsinki_footer_copyright' );
+function helsinki_login_hooks() {
+	$scheme = helsinki_login_get_scheme();
+	add_filter('helsinki_login_body_class', 'helsinki_scheme_body_class', 10);
+	if ( helsinki_scheme_has_invert_color() ) {
+		add_filter('helsinki_login_body_class', 'helsinki_scheme_invert_color_body_class', 10);
+	}
+	add_action( 'helsinki_login_head', 'wp_enqueue_scripts', 1 );
+	add_action( 'helsinki_login_head', 'wp_resource_hints', 2 );
+	add_action( 'helsinki_login_head', 'locale_stylesheet' );
+	add_action('helsinki_login_head', function() use ($scheme) { helsinki_scheme_root_styles($scheme); }, 6 );
+	add_action( 'helsinki_login_head', 'wp_print_styles', 7 );
+	add_action( 'helsinki_login_head', 'wp_print_head_scripts', 8 );
+
+	add_action( 'helsinki_login_head', 'wp_site_icon', 99 );
+	add_action('helsinki_login_header', 'helsinki_header_logo', 10);
+	add_action( 'helsinki_login_header', 'helsinki_header_languages', 20 );
+	add_action('helsinki_login_mobile_header', 'helsinki_header_languages', 10);
+	add_action( 'helsinki_login_main', __NAMESPACE__ . '\\helsinki_login_notification', 10);
+	add_action( 'helsinki_login_main', __NAMESPACE__ . '\\helsinki_login_content', 10 );
+	add_action( 'helsinki_login_footer_top', __NAMESPACE__ . '\\helsinki_login_koros' );
+	add_action( 'helsinki_login_footer', 'helsinki_footer_logo' );
+	add_action( 'helsinki_login_footer', 'helsinki_footer_copyright' );
+	add_action( 'helsinki_login_bottom', 'wp_print_footer_scripts' );
+}
 
 function helsinki_login_site_title( $data ) {
 	printf(
@@ -89,7 +119,7 @@ function helsinki_login_content( $data ) {
 		$query = esc_attr( urldecode($_GET['query']));
 	}
 
-	$parts[] = '<h1>Login</h1>';
+	$parts[] = '<h1>' . __('Login', 'helsinki-privatewebsite') . '</h1>';
 
 	if ( $data['site_description'] ) {
 		$parts[] = wp_kses_post( wpautop( $data['site_description'] ) );
@@ -117,18 +147,39 @@ function helsinki_login_content( $data ) {
 			<a href="/wp-login.php?action=lostpassword">%s</a>
 		</div>
 	</form>',
-	_('Username or e-mail', 'helsinki-privatewebsite'),
-	_('Password', 'helsinki-privatewebsite'),
-	_('Remember me', 'helsinki-privatewebsite'),
-	_('Login', 'helsinki-privatewebsite'),
-	$query,
-	_('Lost your password?', 'helsinki-privatewebsite')
+	__('Username or e-mail', 'helsinki-privatewebsite'),
+	__('Password', 'helsinki-privatewebsite'),
+	__('Remember me', 'helsinki-privatewebsite'),
+	__('Login', 'helsinki-privatewebsite'),
+	isset($query) ? $query : esc_attr(home_url()),
+	__('Lost your password?', 'helsinki-privatewebsite')
 	);
 
 	$privatewebsite_settings = get_option('helsinki-privatewebsite-settings', array());
 
+	if (function_exists('pll__')) {
+		if (isset($privatewebsite_settings['custom-content-heading'])) {
+			$privatewebsite_settings['custom-content-heading'] = pll__($privatewebsite_settings['custom-content-heading']);
+		}
+		if (isset($privatewebsite_settings['custom-content-content'])) {
+			$privatewebsite_settings['custom-content-content'] = pll__($privatewebsite_settings['custom-content-content']);
+		}
+		if (isset($privatewebsite_settings['custom-content-link1-text'])) {
+			$privatewebsite_settings['custom-content-link1-text'] = pll__($privatewebsite_settings['custom-content-link1-text']);
+		}
+		if (isset($privatewebsite_settings['custom-content-link1-url'])) {
+			$privatewebsite_settings['custom-content-link1-url'] = pll__($privatewebsite_settings['custom-content-link1-url']);
+		}
+		if (isset($privatewebsite_settings['custom-content-link2-text'])) {
+			$privatewebsite_settings['custom-content-link2-text'] = pll__($privatewebsite_settings['custom-content-link2-text']);
+		}
+		if (isset($privatewebsite_settings['custom-content-link2-url'])) {
+			$privatewebsite_settings['custom-content-link2-url'] = pll__($privatewebsite_settings['custom-content-link2-url']);
+		}
+	}
+
 	$parts[] = sprintf(
-		'<div>
+		'<div class="login-additional-info">
 			%s
 			%s
 			%s
@@ -140,7 +191,6 @@ function helsinki_login_content( $data ) {
 		isset($privatewebsite_settings['custom-content-link2-text']) && isset($privatewebsite_settings['custom-content-link2-url']) ? '<a href="'. $privatewebsite_settings['custom-content-link2-url'] .'">' . $privatewebsite_settings['custom-content-link2-text'] . '</a>' : ''
 	);
 
-	//$parts[] = helsinki_login_button();
 
 	printf(
 		'<div class="grid m-up-2">
@@ -155,30 +205,64 @@ function helsinki_login_content( $data ) {
 function helsinki_login_notification() {
 	if (isset($_GET['checkemail']) && $_GET['checkemail'] === 'confirm') {
 		printf(
-		'<div">
-			<section aria-label="%s" class="hds-notification hds-notification--success">
-			<div class="hds-notification__content">			
-				<div class="hds-notification__label" role="heading" aria-level="2">
-					<span class="hds-icon hds-icon--check-circle-fill" aria-hidden="true"></span>
-					<span>%s</span>
-				</div>
-				<div class="hds-notification__body">%s</div>
-			</div>
-			</section>
-		</div>',
-		_('Notification', 'helsinki-privatewebsite'),
-		_('Password change requested', 'helsinki-privatewebsite'),
-		_('We have sent e-mail instructions for changing the password.')
+			helsinki_login_notification_template(),
+			privatewebsite_random_string(),
+			__('Notification', 'helsinki-privatewebsite'),
+			esc_attr('success'),
+			helsinki_get_svg_icon('check-circle-fill'),
+			__('Password change requested', 'helsinki-privatewebsite'),
+			__('We have sent e-mail instructions for changing the password.', 'helsinki-privatewebsite'),
+			__( 'Close notification', 'helsinki-privatewebsite' ),
+			helsinki_get_svg_icon('cross')
 		);
+	}
+	if (isset($_GET['action']) && $_GET['action'] === 'resetpass') {
+		printf(
+			helsinki_login_notification_template(),
+			privatewebsite_random_string(),
+			__('Notification', 'helsinki-privatewebsite'),
+			esc_attr('success'),
+			helsinki_get_svg_icon('check-circle-fill'),
+			__('Password has been changed', 'helsinki-privatewebsite'),
+			__('Please login with your username and your new password.', 'helsinki-privatewebsite'),
+			__( 'Close notification', 'helsinki-privatewebsite' ),
+			helsinki_get_svg_icon('cross')
+		);	
+	}
+	if (isset($_GET['login']) && $_GET['login'] === 'failed') {
+		printf(
+			helsinki_login_notification_template(),
+			privatewebsite_random_string(),
+			__('Notification', 'helsinki-privatewebsite'),
+			esc_attr('error'),
+			helsinki_get_svg_icon('error'),
+			__('Error logging in', 'helsinki-privatewebsite'),
+			__('Incorrect username, e-mail or password.', 'helsinki-privatewebsite'),
+			__( 'Close notification', 'helsinki-privatewebsite' ),
+			helsinki_get_svg_icon('cross')
+		);	
 	}
 }
 
-function helsinki_login_button() {
-	return sprintf(
-		'<a class="button hds-button" href="%s">%s</a>',
-		'https://www.hel.fi',
-		esc_html__( 'Go to hel.fi', 'helsinki-universal' )
-	);
+function helsinki_login_notification_template() {
+	return 
+	'<div class="notifications">
+		<section id="%s" aria-label="%s" class="notification hds-notification hds-notification--%s">
+		<div class="hds-notification__content">			
+			<div class="hds-notification__label" role="heading" aria-level="2">
+				<span class="hds-icon" aria-hidden="true">%s</span>
+				<span class="label-inner">%s</span>
+			</div>
+			<div class="hds-notification__body">%s</div>
+		</div>
+		<button class="button-reset close hds-notification__close-button" type="button">
+			<span class="screen-reader-text">
+				%s
+			</span>
+			%s
+		</button>
+		</section>
+	</div>';
 }
 
 function helsinki_login_image() {
@@ -188,6 +272,27 @@ function helsinki_login_image() {
 	);
 }
 
+function helsinki_login_get_scheme() {
+	$current_scheme = '';
+	if (function_exists('helsinki_theme_mod')) {
+		$current_scheme = helsinki_theme_mod('helsinki_general_style', 'scheme');
+	}
+	return $current_scheme;
+}
+
 function helsinki_login_koros( $data ) {
 	echo helsinki_koros( 'login' );
+}
+
+function helsinki_privatewebsite_logout_bar() {
+	printf(
+	'<div id="logout_bar">
+		<div class="hds-container hds-container--wide flex-container flex-container--align-center">
+			<div class="logout__link">
+				<a href="%s">%s</a></div>
+		</div>
+	</div>',
+	wp_logout_url(),
+	__('Logout', 'helsinki-privatewebsite')
+	);
 }

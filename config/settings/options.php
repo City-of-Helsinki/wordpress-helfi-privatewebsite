@@ -3,21 +3,22 @@ return array(
 	'general' => array(
         array(
             'id' => 'privatewebsite-general',
-            'name' => _('General', 'helsinki-privatewebsite'),
+            'name' => __('General', 'helsinki-privatewebsite'),
             'page' => 'helsinki-privatewebsite-settings',
+            'description' => __('Manage which plugin features are enabled.', 'helsinki-privatewebsite'),
             'options' => array(
                 array(
                     'id' => 'login-page-enabled',
-                    'name' => _('Login page', 'helsinki-privatewebsite'),
+                    'name' => __('Login page', 'helsinki-privatewebsite'),
                     'type' => 'checkbox',
-                    'description' => _('Forces users to login to view website content.', 'helsinki-privatewebsite'),
+                    'description' => __('Forces users to login to view website content.', 'helsinki-privatewebsite'),
                     'default' => 'on'
                 ),
                 array(
                     'id' => 'protect-media-files',
-                    'name' => _('Protect media files', 'helsinki-privatewebsite'),
+                    'name' => __('Protect media files', 'helsinki-privatewebsite'),
                     'type' => 'checkbox',
-                    'description' => _('Direct access to media files will be blocked if the user is not logged in.', 'helsinki-privatewebsite'),
+                    'description' => __('Direct access to media files will be blocked if the user is not logged in.', 'helsinki-privatewebsite'),
                     'default' => 'on'
                 ),
             ),
@@ -26,17 +27,18 @@ return array(
 	'login-page' => array(
         array(
             'id' => 'privatewebsite-login-page',
-            'name' => 'Info Section Heading & Content',
+            'name' => __('Info Section Heading & Content', 'helsinki-privatewebsite'),
             'page' => 'helsinki-privatewebsite-settings',
+            'description' => __('Include additional information on the login page.', 'helsinki-privatewebsite'),
             'options' => array(
                 array(
                     'id' => 'custom-content-heading',
-                    'name' => 'Extra Info Heading',
+                    'name' => __('Info Heading', 'helsinki-privatewebsite'),
                     'type' => 'text'
                 ),
                 array(
                     'id' => 'custom-content-content',
-                    'name' => 'Extra Info Content',
+                    'name' => __('Info Content', 'helsinki-privatewebsite'),
                     'type' => 'textarea'
                 ),
             ),

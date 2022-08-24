@@ -1,0 +1,135 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Helsinki Private Website\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-24 11:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.0; wp-6.0.1\n"
+"X-Domain: helsinki-privatewebsite"
+
+#. Author of the plugin
+msgid "Broomu Digitals"
+msgstr ""
+
+#: login/login.php:215 login/login.php:228 login/login.php:241
+msgid "Close notification"
+msgstr ""
+
+#: config/settings/options.php:21
+msgid ""
+"Direct access to media files will be blocked if the user is not logged in."
+msgstr ""
+
+#: login/login.php:239
+msgid "Error logging in"
+msgstr ""
+
+#: config/settings/options.php:14
+msgid "Forces users to login to view website content."
+msgstr ""
+
+#: config/settings/options.php:6 config/settings/tabs.php:4
+msgid "General"
+msgstr ""
+
+#. Name of the plugin
+#: views/settings/page.php:10
+msgid "Helsinki Private Website"
+msgstr ""
+
+#. Description of the plugin
+msgid "Hides the website content behind a login."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.broomudigitals.fi"
+msgstr ""
+
+#: config/settings/options.php:32
+msgid "Include additional information on the login page."
+msgstr ""
+
+#: login/login.php:240
+msgid "Incorrect username, e-mail or password."
+msgstr ""
+
+#: config/settings/options.php:41
+msgid "Info Content"
+msgstr ""
+
+#: config/settings/options.php:36
+msgid "Info Heading"
+msgstr ""
+
+#: config/settings/options.php:30
+msgid "Info Section Heading & Content"
+msgstr ""
+
+#: login/login.php:122 login/login.php:153
+msgid "Login"
+msgstr ""
+
+#: config/settings/tabs.php:7
+msgid "Login Page"
+msgstr ""
+
+#: config/settings/options.php:12
+msgid "Login page"
+msgstr ""
+
+#: login/login.php:296
+msgid "Logout"
+msgstr ""
+
+#: login/login.php:155
+msgid "Lost your password?"
+msgstr ""
+
+#: config/settings/options.php:8
+msgid "Manage which plugin features are enabled."
+msgstr ""
+
+#: login/login.php:210 login/login.php:223 login/login.php:236
+msgid "Notification"
+msgstr ""
+
+#: login/login.php:151
+msgid "Password"
+msgstr ""
+
+#: login/login.php:213
+msgid "Password change requested"
+msgstr ""
+
+#: login/login.php:226
+msgid "Password has been changed"
+msgstr ""
+
+#: login/login.php:227
+msgid "Please login with your username and your new password."
+msgstr ""
+
+#: config/settings/options.php:19
+msgid "Protect media files"
+msgstr ""
+
+#: login/login.php:152
+msgid "Remember me"
+msgstr ""
+
+#: login/login.php:150
+msgid "Username or e-mail"
+msgstr ""
+
+#: login/login.php:214
+msgid "We have sent e-mail instructions for changing the password."
+msgstr ""

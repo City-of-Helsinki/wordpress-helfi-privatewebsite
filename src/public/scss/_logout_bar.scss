@@ -1,0 +1,25 @@
+#logout_bar {
+    background-color: $black;
+    font-size: rem-calc(14);
+
+    .hds-container {
+        flex-flow: row-reverse;
+
+        @include breakpointMax(l) {
+            padding-left: spacing(s);
+            padding-right: spacing(s);
+        }
+
+        .logout__link {
+            padding: spacing('s') 0;
+
+            @include breakpoint('l') {
+                padding: spacing('s') spacing('l');
+            }
+
+            a {
+                color: $white;
+            }
+        }
+    }
+}

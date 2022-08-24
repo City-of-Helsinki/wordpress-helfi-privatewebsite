@@ -8,7 +8,7 @@ $data = helsinki_privatewebsite_login_page_data();
 <html <?php language_attributes(); ?>>
 	<head>
 		<meta charset="<?php esc_attr( bloginfo( 'charset' ) ); ?>" />
-		<?php //mtnc_get_page_title(); ?>
+		<title><?php echo _('Login', 'helsinki-privatewebsite') . ' | ' . $data['site_title']; ?></title>
 		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, minimum-scale=1">
 		<meta name="description" content="<?php echo esc_attr( $data['site_description'] ); ?>"/>
 		<meta http-equiv="X-UA-Compatible" content="" />
@@ -16,7 +16,7 @@ $data = helsinki_privatewebsite_login_page_data();
 		<meta property="og:title" content="<?php echo _('Login', 'helsinki-privatewebsite') . ' | ' . $data['site_title']; ?>"/>
 		<meta property="og:type" content="Login"/>
 		<meta property="og:url" content="<?php echo esc_url( $data['site_url'] ); ?>"/>
-		<meta property="og:description" content="<?php //echo esc_attr( $data['page_description'] ); ?>"/>
+		<meta property="og:description" content="<?php echo esc_attr( $data['site_description'] ); ?>"/>
 		<?php if ( ! empty( $data['logo'] ) ) : ?>
 			<meta property="og:image" content="<?php echo esc_url( $data['logo'] ); ?>" />
 			<meta property="og:image:url" content="<?php echo esc_url( $data['logo'] ); ?>"/>
@@ -27,7 +27,7 @@ $data = helsinki_privatewebsite_login_page_data();
 		<?php do_action( 'helsinki_login_head' ); ?>
 	</head>
 
-	<body class="login">
+	<body <?php body_class('login'); ?>>
 
 		<?php do_action( 'helsinki_login_top', $data ); ?>
 
@@ -37,7 +37,9 @@ $data = helsinki_privatewebsite_login_page_data();
 			<div class="hds-container navigation__content hds-container--wide flex-container">
 			  <?php do_action( 'helsinki_login_header', $data ); ?>
 			</div>
-
+			<div id="mobile-panel" class="hide-for-l" aria-labelledby="mobile-panel-toggle">
+				<?php do_action( 'helsinki_login_mobile_header', $data ); ?>
+			</div>
 			<?php do_action( 'helsinki_login_header_bottom', $data ); ?>
 		</header>
 
@@ -46,7 +48,7 @@ $data = helsinki_privatewebsite_login_page_data();
 
 		    <div class="content">
 
-				<div class="hds-container content__container">
+				<div class="hds-container">
 
 					<div class="content__main">
 						<?php do_action( 'helsinki_login_main', $data ); ?>

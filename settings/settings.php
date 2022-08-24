@@ -7,6 +7,7 @@ define(__NAMESPACE__ . '\\PAGE_SLUG', 'helsinki-privatewebsite-settings');
 add_action( 'admin_init', __NAMESPACE__ . '\\privatewebsite_register_settings');
 add_action( 'admin_menu', __NAMESPACE__ . '\\privatewebsite_settings_page' );
 add_action( 'helsinki_privatewebsite_settings_tab_panel', __NAMESPACE__ . '\\privatewebsite_renderTabPanel' );
+add_action( 'helsinki_privatewebsite_init', __NAMESPACE__ . '\\privatewebsite_register_polylang_strings');
 
 $tabs = array();
 
@@ -86,10 +87,17 @@ function privatewebsite_register_settings() {
 }
 
 function privatewebsite_settings_add_section($section) {
-    add_settings_section($section['id'], $section['name'], '__return_true', $section['page']);
+    add_settings_section($section['id'], $section['name'], function() use ($section) { if (isset($section['description'])) { privatewebsite_settings_section_description($section['description']); } }, $section['page']);
     foreach ($section['options'] as $option) {
         privatewebsite_settings_add_option($option, $section['id'], $section['page']);
     }
+}
+
+function privatewebsite_settings_section_description($description) {
+    printf(
+        '<p>%s</p>',
+        $description
+    );
 }
 
 function privatewebsite_settings_add_option($option, $section, $page) {
@@ -110,7 +118,11 @@ function privatewebsite_settings_input(array $args) {
         );
     }
 
-    $option = get_option(PAGE_SLUG, array())[$args['id']];
+    $option = '';
+    $settings = get_option(PAGE_SLUG, array());
+    if (isset($settings[$args['id']])) {
+        $option = $settings[$args['id']];
+    }
     if (!isset($option) && isset($args['default'])) {
         $option = $args['default'];
     }
@@ -121,6 +133,9 @@ function privatewebsite_settings_input(array $args) {
             if ($option === 'on') {
                 $value = 'checked';
             }
+        }
+        else if ($args['type'] === 'textarea') {
+            $value = esc_attr($option);
         }
         else {
             $value = sprintf(
@@ -150,5 +165,24 @@ function privatewebsite_settings_input(array $args) {
             $value,
             $description
         );
+    }
+}
+
+function privatewebsite_register_polylang_strings() {
+    if (function_exists('pll_register_string')) {
+        $config = include PLUGIN_PATH . 'config/settings/options.php';
+        $settings = get_option(PAGE_SLUG, array());
+
+        foreach($config as $tab) {
+            foreach($tab as $section) {
+                foreach($section['options'] as $option) {
+                    if ($option['type'] === 'text' || $option['type'] === 'textarea') {
+                        if (isset($settings[$option['id']])) {
+                            pll_register_string($option['id'], $settings[$option['id']], 'helsinki-privatewebsite', false);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

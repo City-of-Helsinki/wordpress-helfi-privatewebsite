@@ -15,6 +15,15 @@
 
 namespace CityOfHelsinki\WordPress\PrivateWebsite;
 
+/**
+ * Constants
+*/
+define( __NAMESPACE__ . '\\PLUGIN_VERSION', '1.0.0' );
+define( __NAMESPACE__ . '\\PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( __NAMESPACE__ . '\\PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( __NAMESPACE__ . '\\PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+  
+
 if ( ! defined( 'ABSPATH' ) ) {
   exit;
 }
@@ -24,7 +33,7 @@ function plugin_activate() {
 	/**
 	 * User Role
 	 */
-	require_once 'userrole/create.php';
+	require_once 'userrole/privateuser.php';
 	if (!privatewebsite_check_for_userrole()) {
 		privatewebsite_create_userrole();
 	}
@@ -40,19 +49,14 @@ function plugin_activate() {
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\init', 100 );
 function init() {
 
-	/**
-	  * Constants
-	  */
-	define( __NAMESPACE__ . '\\PLUGIN_VERSION', '1.0.0' );
-	define( __NAMESPACE__ . '\\PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
-	define( __NAMESPACE__ . '\\PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-	define( __NAMESPACE__ . '\\PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
 	/**
 	  * Plugin parts
 	  */
 	require_once 'functions.php';
+	require_once 'userrole/privateuser.php';
 	require_once 'settings/settings.php';
+	require_once 'media-access/manage.php';
 	require_once 'login/login.php';
 
 	/**
