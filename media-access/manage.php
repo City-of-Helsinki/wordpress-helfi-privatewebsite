@@ -4,8 +4,15 @@ namespace CityOfHelsinki\WordPress\PrivateWebsite;
 
 add_action('helsinki_privatewebsite_init', __NAMESPACE__ . '\\privatewebsite_check_media_restriction_file');
 
+function privatewebsite_upload_dir_path() {
+    if (is_multisite()) {
+        return wp_upload_dir()['basedir'].'/sites/'.get_current_blog_id();
+    }
+    return wp_upload_dir()['basedir'];
+}
+
 function privatewebsite_check_media_restriction_file() {    
-    $path = trailingslashit( wp_upload_dir()['basedir'] );
+    $path = trailingslashit( privatewebsite_upload_dir_path() );
 
 
     $restriction_enabled = '';
@@ -27,13 +34,13 @@ function privatewebsite_check_media_restriction_file() {
 }
 
 function privatewebsite_create_media_restriction_file() {
-    $path = trailingslashit( wp_upload_dir()['basedir'] );
+    $path = trailingslashit( privatewebsite_upload_dir_path() );
     $file = PLUGIN_PATH . 'media-access/.htaccess';
     copy($file, trailingslashit( $path . '.htaccess' ));
 }
 
 function privatewebsite_remove_media_restriction_file() {
-    $path = trailingslashit( wp_upload_dir()['basedir'] );
+    $path = trailingslashit( privatewebsite_upload_dir_path() );
     if (file_exists($path . '.htaccess')) {
         unlink(trailingslashit( $path . '.htaccess' ));
     }
