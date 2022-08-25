@@ -3,7 +3,7 @@ return array(
 	'general' => array(
 		'title' => __('General', 'helsinki-privatewebsite'),
 	),
-	'login-page' => array(
+	/*'login-page' => array(
 		'title' => __('Login Page', 'helsinki-privatewebsite'),
-	),
+	),*/
 );

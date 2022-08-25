@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: Helsinki Private Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-24 06:12+0000\n"
-"PO-Revision-Date: 2022-08-25 09:09+0000\n"
+"PO-Revision-Date: 2022-08-25 11:26+0000\n"
 "Last-Translator: \n"
-"Language-Team: Suomi\n"
+"Language-Team: Finnish\n"
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Broomu Digitals"
 msgstr "Broomu Digitals"
 
-#: login/login.php:215 login/login.php:228 login/login.php:241
+#: login/login.php:220 login/login.php:233 login/login.php:246
 msgid "Close notification"
 msgstr "Sulje ilmoitus"
 
@@ -30,7 +30,7 @@ msgstr ""
 "Mediakirjastojen tiedostojen lukeminen estetään, jos käyttäjä ei ole "
 "kirjautunut sisään."
 
-#: login/login.php:239
+#: login/login.php:244
 msgid "Error logging in"
 msgstr "Virhe kirjautumisessa sisään"
 
@@ -57,10 +57,14 @@ msgid "https://www.broomudigitals.fi"
 msgstr "https://www.broomudigitals.fi"
 
 #: config/settings/options.php:32
-msgid "Include additional information on the login page."
-msgstr "Sisällytä ylimääräisiä tietoja kirjautumissivulle."
+msgid ""
+"Include additional information on the login page. Add possible translations "
+"from the String translations -page."
+msgstr ""
+"Lisää ylimääräistä tietoa kirjautumissivulle. Mahdolliset käännökset saa "
+"lisättyä merkkijonojen käännöksistä."
 
-#: login/login.php:240
+#: login/login.php:245
 msgid "Incorrect username, e-mail or password."
 msgstr "Virheellinen käyttäjätunnus, sähköposti tai salasana."
 
@@ -76,23 +80,19 @@ msgstr "Info Otsikko"
 msgid "Info Section Heading & Content"
 msgstr "Info-osion Otsikko & Sisältö"
 
-#: login/login.php:122 login/login.php:153
+#: login/index.php:11 login/login.php:126 login/login.php:157
 msgid "Login"
 msgstr "Kirjaudu sisään"
-
-#: config/settings/tabs.php:7
-msgid "Login Page"
-msgstr "Kirjautumissivu"
 
 #: config/settings/options.php:12
 msgid "Login page"
 msgstr "Kirjautumissivu"
 
-#: login/login.php:296
+#: login/login.php:301
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
-#: login/login.php:155
+#: login/login.php:160
 msgid "Lost your password?"
 msgstr "Salasana hukassa?"
 
@@ -100,23 +100,23 @@ msgstr "Salasana hukassa?"
 msgid "Manage which plugin features are enabled."
 msgstr "Hallinnoi, mitkä lisäosan toiminnallisuudet ovat päällä."
 
-#: login/login.php:210 login/login.php:223 login/login.php:236
+#: login/login.php:215 login/login.php:228 login/login.php:241
 msgid "Notification"
 msgstr "Ilmoitus"
 
-#: login/login.php:151
+#: login/login.php:155
 msgid "Password"
 msgstr "Salasana"
 
-#: login/login.php:213
+#: login/login.php:218
 msgid "Password change requested"
 msgstr "Salasanan vaihto on pyydetty"
 
-#: login/login.php:226
+#: login/login.php:231
 msgid "Password has been changed"
 msgstr "Salasana on vaihdettu"
 
-#: login/login.php:227
+#: login/login.php:232
 msgid "Please login with your username and your new password."
 msgstr "Kirjaudu sisään käyttäjätunnuksellasi ja uudella salasanallasi."
 
@@ -124,7 +124,7 @@ msgstr "Kirjaudu sisään käyttäjätunnuksellasi ja uudella salasanallasi."
 msgid "Protect media files"
 msgstr "Suojaa mediatiedostot"
 
-#: login/login.php:152
+#: login/login.php:156
 msgid "Remember me"
 msgstr "Muista minut"
 
@@ -132,10 +132,10 @@ msgstr "Muista minut"
 msgid "Save settings"
 msgstr "Tallenna asetukset"
 
-#: login/login.php:150
+#: login/login.php:154
 msgid "Username or e-mail"
 msgstr "Käyttäjätunnus tai sähköpostiosoite"
 
-#: login/login.php:214
+#: login/login.php:219
 msgid "We have sent e-mail instructions for changing the password."
 msgstr "Lähetimme sinulle ohjeet sähköpostiin salasanan vaihtamista varten."

@@ -29,7 +29,7 @@ return array(
             'id' => 'privatewebsite-login-page',
             'name' => __('Info Section Heading & Content', 'helsinki-privatewebsite'),
             'page' => 'helsinki-privatewebsite-settings',
-            'description' => __('Include additional information on the login page.', 'helsinki-privatewebsite'),
+            'description' => __('Include additional information on the login page. Add possible translations from the String translations -page.', 'helsinki-privatewebsite'),
             'options' => array(
                 array(
                     'id' => 'custom-content-heading',

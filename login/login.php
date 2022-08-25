@@ -148,7 +148,7 @@ function helsinki_login_content( $data ) {
 			<input type="hidden" name="redirect_to" value="%s">
 		</div>
 		<div>
-			<a href="/wp-login.php?action=lostpassword">%s</a>
+			<a href="/wp-login.php?wp_lang=%s&action=lostpassword">%s</a>
 		</div>
 	</form>',
 	__('Username or e-mail', 'helsinki-privatewebsite'),
@@ -156,6 +156,7 @@ function helsinki_login_content( $data ) {
 	__('Remember me', 'helsinki-privatewebsite'),
 	__('Login', 'helsinki-privatewebsite'),
 	isset($query) ? $query : esc_attr(home_url()),
+	function_exists('pll_current_language') ? pll_current_language('locale') : '',
 	__('Lost your password?', 'helsinki-privatewebsite')
 	);
 
