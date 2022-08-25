@@ -95,8 +95,10 @@ function helsinki_login_hooks() {
 
 	add_action( 'helsinki_login_head', 'wp_site_icon', 99 );
 	add_action('helsinki_login_header', 'helsinki_header_logo', 10);
-	add_action( 'helsinki_login_header', 'helsinki_header_languages', 20 );
-	add_action('helsinki_login_mobile_header', 'helsinki_header_languages', 10);
+	if ( apply_filters( 'helsinki_header_languages_enabled', false ) ) {
+		add_action( 'helsinki_login_header', 'helsinki_header_languages', 20 );
+		add_action('helsinki_login_mobile_header', 'helsinki_header_languages', 10);
+	}
 	add_action( 'helsinki_login_main', __NAMESPACE__ . '\\helsinki_login_notification', 10);
 	add_action( 'helsinki_login_main', __NAMESPACE__ . '\\helsinki_login_content', 10 );
 	add_action( 'helsinki_login_footer_top', __NAMESPACE__ . '\\helsinki_login_koros' );
