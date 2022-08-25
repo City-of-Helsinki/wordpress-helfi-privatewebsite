@@ -3,7 +3,7 @@
 		settings_fields( $page );
 		do_settings_sections( $page );
 		submit_button(
-			__( 'Save settings', 'hds-wp' ),
+			__( 'Save settings', 'helsinki-privatewebsite' ),
 			'small',
 			'',
 			true,

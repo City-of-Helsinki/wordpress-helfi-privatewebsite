@@ -8,7 +8,7 @@ $data = helsinki_privatewebsite_login_page_data();
 <html <?php language_attributes(); ?>>
 	<head>
 		<meta charset="<?php esc_attr( bloginfo( 'charset' ) ); ?>" />
-		<title><?php echo _('Login', 'helsinki-privatewebsite') . ' | ' . $data['site_title']; ?></title>
+		<title><?php echo __('Login', 'helsinki-privatewebsite') . ' | ' . $data['site_title']; ?></title>
 		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, minimum-scale=1">
 		<meta name="description" content="<?php echo esc_attr( $data['site_description'] ); ?>"/>
 		<meta http-equiv="X-UA-Compatible" content="" />

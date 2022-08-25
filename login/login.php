@@ -47,17 +47,19 @@ function helsinki_privatewebsite_login_page_data() {
 
 add_action('wp_login_failed', __NAMESPACE__ . '\\helsinki_privatewebsite_login_failed', 10, 2);
 function helsinki_privatewebsite_login_failed( $username, $error ) {
-	$referrer = $_SERVER['HTTP_REFERER'];
+	$referrer = isset($_SERVER['HTTP_REFERER']) ?  explode('?', $_SERVER['HTTP_REFERER'])[0] : '';
 	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
-		$url = parse_url($referrer);
-		$args = array();
-		parse_str($url['query'], $args);
-		var_dump($args);
-		exit;
 		wp_redirect( $referrer . '?login=failed' );
 		exit;
 	}
 }
+
+add_action('wp_logout', __NAMESPACE__ . '\\helsinki_privatewebsite_redirect_logout');
+function helsinki_privatewebsite_redirect_logout() {
+	wp_redirect( home_url() );
+	exit;
+}
+
 
 add_filter( 'authenticate', __NAMESPACE__ . '\\helsinki_privatewebsite_authenticate_username_password', 30, 3);
 function helsinki_privatewebsite_authenticate_username_password( $user, $username, $password )
@@ -66,7 +68,9 @@ function helsinki_privatewebsite_authenticate_username_password( $user, $usernam
 
     if ( empty($username) || empty($password) )
     {
-        $error = new \WP_Error('authentication_failed', __('<strong>ERROR</strong>: Invalid username or incorrect password.'));
+        $error = new \WP_Error();
+        $user  = new \WP_Error('authentication_failed', __('<strong>ERROR</strong>: Invalid username or incorrect password.'));
+
         return $error;
     }
 }

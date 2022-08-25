@@ -13,15 +13,15 @@ $tabs = array();
 
 function privatewebsite_settings_page() {
     add_menu_page(
-        __('Helsinki Private Website', 'hds-wp'),
-        __('Helsinki Private Website', 'hds-wp'),
+        __('Helsinki Private Website', 'helsinki-privatewebsite'),
+        __('Helsinki Private Website', 'helsinki-privatewebsite'),
         apply_filters(
             'helsinki_private_website_settings_page_capability_requirement',
             'manage_options'
         ),
         PAGE_SLUG,
         __NAMESPACE__ . '\\privatewebsite_settings_renderpage',
-        '',
+        'dashicons-admin-network',
         null
     );
 }

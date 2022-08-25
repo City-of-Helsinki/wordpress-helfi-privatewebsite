@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Helsinki Private Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-24 11:57+0000\n"
+"POT-Creation-Date: 2022-08-25 09:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -42,7 +42,7 @@ msgid "General"
 msgstr ""
 
 #. Name of the plugin
-#: views/settings/page.php:10
+#: settings/settings.php:16 settings/settings.php:17 views/settings/page.php:10
 msgid "Helsinki Private Website"
 msgstr ""
 
@@ -124,6 +124,10 @@ msgstr ""
 
 #: login/login.php:152
 msgid "Remember me"
+msgstr ""
+
+#: views/settings/form.php:6
+msgid "Save settings"
 msgstr ""
 
 #: login/login.php:150

@@ -1,98 +1,49 @@
 "use strict";
 
-(function (config) {
-  'use strict';
+window.onload = function () {
+  function getRedirectParam() {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('query');
+  }
 
-  var events = config.events,
-      ajax = config.ajax;
+  function savePossibleRedirectParam() {
+    var redirect = getRedirectParam();
 
-  if (events.length > 0) {
-    for (var i = 0; i < events.length; i++) {
-      _initEventsElement(events[i]);
+    if (redirect !== null && redirect !== '') {
+      sessionStorage.setItem('helsinki-login-redirect', redirect);
     }
   }
 
-  function _initEventsElement(element) {
-    var _loadMore = element.querySelector('.events__more .button');
+  function insertRedirectToLoginForm() {
+    var input = document.querySelector('.login-submit input[name="redirect_to"]');
 
-    if (_loadMore) {
-      _loadMore.addEventListener('click', _clickLoadMore);
+    if (input != null) {
+      if (input.value !== null && input.value === '') {
+        input.value = sessionStorage.getItem('helsinki-login-redirect');
+      }
     }
   }
 
-  function _currentEventsContainer(element) {
-    return element.closest('.helsinki-events').querySelector('.events__container');
+  function removeRedirectFromStorage() {
+    sessionStorage.removeItem('helsinki-login-redirect');
   }
 
-  function _clickLoadMore(event) {
-    event.preventDefault();
+  function isUserLoggedIn() {
+    if (document.body.classList.contains('logged-in')) {
+      return true;
+    }
 
-    _loadMoreEvents(event.currentTarget);
+    return false;
   }
 
-  function _loadMoreEvents(button) {
-    button.disabled = true;
-
-    var _container = _currentEventsContainer(button),
-        _formData = new FormData();
-
-    _formData.append('action', button.getAttribute('data-action'));
-
-    _formData.append('config', parseInt(button.getAttribute('data-config'), 10));
-
-    var _currentPage = parseInt(button.getAttribute('data-paged'), 10);
-
-    _formData.append('paged', _currentPage);
-
-    _ajaxRequest(ajax.ajaxUrl, _formData).then(function (response) {
-      if (response) {
-        response = JSON.parse(response);
-      }
-
-      if (!response.data.html) {
-        button.remove();
-        return;
-      }
-
-      _container.insertAdjacentHTML('beforeend', response.data.html);
-
-      if (!response.data.more) {
-        button.remove();
-      } else {
-        _currentPage++;
-        button.setAttribute('data-paged', _currentPage);
-        button.disabled = false;
-      }
-    }).catch(function (error) {
-      button.remove();
-    });
+  function init() {
+    if (!isUserLoggedIn()) {
+      savePossibleRedirectParam();
+      insertRedirectToLoginForm();
+    } else {
+      removeRedirectFromStorage();
+    }
   }
 
-  function _ajaxRequest(endpoint, formData) {
-    return new Promise(function (resolve, reject) {
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', endpoint);
-
-      xhr.onload = function () {
-        if (this.status >= 200 && this.status < 300) {
-          resolve(xhr.response);
-        } else {
-          reject(xhr.response);
-        }
-      };
-
-      xhr.onerror = function () {
-        reject({
-          status: this.status,
-          message: xhr.statusText
-        });
-      };
-
-      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-      xhr.send(formData);
-    });
-  }
-})({
-  events: document.querySelectorAll('.helsinki-events'),
-  ajax: helsinkiLinkedEvents
-});
+  init();
+};

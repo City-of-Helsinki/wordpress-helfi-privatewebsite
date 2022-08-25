@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Helsinki Private Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-24 06:12+0000\n"
-"PO-Revision-Date: 2022-08-24 11:59+0000\n"
+"PO-Revision-Date: 2022-08-25 09:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: Suomi\n"
 "Language: fi\n"
@@ -44,7 +44,7 @@ msgid "General"
 msgstr "Yleinen"
 
 #. Name of the plugin
-#: views/settings/page.php:10
+#: settings/settings.php:16 settings/settings.php:17 views/settings/page.php:10
 msgid "Helsinki Private Website"
 msgstr "Helsinki Yksityinen Sivusto"
 
@@ -127,6 +127,10 @@ msgstr "Suojaa mediatiedostot"
 #: login/login.php:152
 msgid "Remember me"
 msgstr "Muista minut"
+
+#: views/settings/form.php:6
+msgid "Save settings"
+msgstr "Tallenna asetukset"
 
 #: login/login.php:150
 msgid "Username or e-mail"
