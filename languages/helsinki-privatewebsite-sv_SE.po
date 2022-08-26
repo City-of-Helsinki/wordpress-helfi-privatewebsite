@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Helsinki Private Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-25 09:08+0000\n"
-"PO-Revision-Date: 2022-08-25 11:23+0000\n"
+"PO-Revision-Date: 2022-08-26 07:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -87,7 +87,7 @@ msgstr ""
 
 #: login/login.php:296
 msgid "Logout"
-msgstr ""
+msgstr "Logga ut"
 
 #: login/login.php:155
 msgid "Lost your password?"
