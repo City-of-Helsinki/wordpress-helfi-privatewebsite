@@ -62,9 +62,9 @@ function init() {
 	/**
 	 * Assets
 	 */
-	require_once 'class/Assets.php';
+	require_once 'class/assets.php';
 
-	spl_autoload_register( __NAMESPACE__ . '\\autoloader' );
+	//spl_autoload_register( __NAMESPACE__ . '\\autoloader' );
 
 	/**
 	  * Actions & filters

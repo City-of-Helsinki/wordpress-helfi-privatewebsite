@@ -13,7 +13,7 @@ $data = helsinki_privatewebsite_login_page_data();
 		<meta name="description" content="<?php echo esc_attr( $data['site_description'] ); ?>"/>
 		<meta http-equiv="X-UA-Compatible" content="" />
 		<meta property="og:site_name" content="<?php printf( esc_attr( '%s - %s' ), $data['site_title'], $data['site_description'] ); ?>"/>
-		<meta property="og:title" content="<?php echo _('Login', 'helsinki-privatewebsite') . ' | ' . $data['site_title']; ?>"/>
+		<meta property="og:title" content="<?php echo __('Login', 'helsinki-privatewebsite') . ' | ' . $data['site_title']; ?>"/>
 		<meta property="og:type" content="Login"/>
 		<meta property="og:url" content="<?php echo esc_url( $data['site_url'] ); ?>"/>
 		<meta property="og:description" content="<?php echo esc_attr( $data['site_description'] ); ?>"/>
@@ -50,7 +50,7 @@ $data = helsinki_privatewebsite_login_page_data();
 
 				<div class="hds-container">
 
-					<div class="content__main">
+					<div class="">
 						<?php do_action( 'helsinki_login_main', $data ); ?>
 					</div>
 
