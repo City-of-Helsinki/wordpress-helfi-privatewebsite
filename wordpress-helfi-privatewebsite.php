@@ -37,12 +37,15 @@ function plugin_activate() {
 	if (!privatewebsite_check_for_userrole()) {
 		privatewebsite_create_userrole();
 	}
+}
 
+register_deactivation_hook( __FILE__, __NAMESPACE__ . '\\plugin_deactivate' );
+function plugin_deactivate() {
 	/**
 	 * Media Access
 	 */
-	//require_once 'media-access/manage.php';
-	//privatewebsite_create_media_restriction_file();
+	require_once 'media-access/manage.php';
+	privatewebsite_remove_media_restriction_file();
 }
 
 
