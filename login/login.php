@@ -5,7 +5,7 @@ namespace CityOfHelsinki\WordPress\PrivateWebsite;
 add_action( 'template_include', __NAMESPACE__ . '\\helsinki_privatewebsite_login_template', 999998 );
 function helsinki_privatewebsite_login_template( $template ) {
 	$settings = get_option('helsinki-privatewebsite-settings', array());
-	$login_enabled = isset($settings['login-page-enabled']) ? $settings['login-page-enabled'] : 'on';
+	$login_enabled = isset($settings['login-page-enabled']) ? $settings['login-page-enabled'] : '';
 	if ( is_user_logged_in() || $login_enabled !== 'on' ) {
 		return $template;
 	}
@@ -292,14 +292,16 @@ function helsinki_login_koros( $data ) {
 }
 
 function helsinki_privatewebsite_logout_bar() {
-	printf(
-	'<div id="logout_bar">
-		<div class="hds-container hds-container--wide flex-container flex-container--align-center">
-			<div class="logout__link">
-				<a href="%s">%s</a></div>
-		</div>
-	</div>',
-	wp_logout_url(),
-	__('Logout', 'helsinki-privatewebsite')
-	);
+	if (is_user_logged_in()) {
+		printf(
+		'<div id="logout_bar">
+			<div class="hds-container hds-container--wide flex-container flex-container--align-center">
+				<div class="logout__link">
+					<a href="%s">%s</a></div>
+			</div>
+		</div>',
+		wp_logout_url(),
+		__('Logout', 'helsinki-privatewebsite')
+		);
+	}
 }
