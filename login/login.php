@@ -192,10 +192,10 @@ function helsinki_login_content( $data ) {
 			%s
 			%s
 		</div>',
-		isset($privatewebsite_settings['custom-content-heading']) ? '<h2>' . $privatewebsite_settings['custom-content-heading'] . '</h2>' : '',
-		isset($privatewebsite_settings['custom-content-content']) ? '<p>' . $privatewebsite_settings['custom-content-content'] . '</p>' : '',
-		isset($privatewebsite_settings['custom-content-link1-text']) && isset($privatewebsite_settings['custom-content-link1-url']) ? '<a href="'. $privatewebsite_settings['custom-content-link1-url'] .'">' . $privatewebsite_settings['custom-content-link1-text'] . '</a>' : '',
-		isset($privatewebsite_settings['custom-content-link2-text']) && isset($privatewebsite_settings['custom-content-link2-url']) ? '<a href="'. $privatewebsite_settings['custom-content-link2-url'] .'">' . $privatewebsite_settings['custom-content-link2-text'] . '</a>' : ''
+		isset($privatewebsite_settings['custom-content-heading']) && !empty($privatewebsite_settings['custom-content-heading']) ? '<h2>' . $privatewebsite_settings['custom-content-heading'] . '</h2>' : '',
+		isset($privatewebsite_settings['custom-content-content']) && !empty($privatewebsite_settings['custom-content-content']) ? '<p>' . $privatewebsite_settings['custom-content-content'] . '</p>' : '',
+		isset($privatewebsite_settings['custom-content-link1-text']) && !empty($privatewebsite_settings['custom-content-link1-text']) && isset($privatewebsite_settings['custom-content-link1-url']) && !empty($privatewebsite_settings['custom-content-link1-url']) ? '<a href="'. $privatewebsite_settings['custom-content-link1-url'] .'">' . $privatewebsite_settings['custom-content-link1-text'] . '</a>' : '',
+		isset($privatewebsite_settings['custom-content-link2-text']) && !empty($privatewebsite_settings['custom-content-link2-text']) && isset($privatewebsite_settings['custom-content-link2-url']) && !empty($privatewebsite_settings['custom-content-link2-url']) ? '<a href="'. $privatewebsite_settings['custom-content-link2-url'] .'">' . $privatewebsite_settings['custom-content-link2-text'] . '</a>' : ''
 	);
 
 
