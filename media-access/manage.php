@@ -36,12 +36,12 @@ function privatewebsite_check_media_restriction_file() {
 function privatewebsite_create_media_restriction_file() {
     $path = trailingslashit( privatewebsite_upload_dir_path() );
     $file = PLUGIN_PATH . 'media-access/.htaccess';
-    copy($file, trailingslashit( $path . '.htaccess' ));
+    copy($file, $path . '.htaccess' );
 }
 
 function privatewebsite_remove_media_restriction_file() {
     $path = trailingslashit( privatewebsite_upload_dir_path() );
     if (file_exists($path . '.htaccess')) {
-        unlink(trailingslashit( $path . '.htaccess' ));
+        unlink($path . '.htaccess' );
     }
 }
