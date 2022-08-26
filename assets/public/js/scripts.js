@@ -16,10 +16,11 @@ window.onload = function () {
 
   function insertRedirectToLoginForm() {
     var input = document.querySelector('.login-submit input[name="redirect_to"]');
+    var sessionRedirect = sessionStorage.getItem('helsinki-login-redirect');
 
     if (input != null) {
-      if (input.value !== null && input.value === '') {
-        input.value = sessionStorage.getItem('helsinki-login-redirect');
+      if (sessionRedirect !== null && sessionRedirect !== '') {
+        input.value = sessionRedirect;
       }
     }
   }

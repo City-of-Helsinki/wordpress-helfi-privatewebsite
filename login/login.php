@@ -158,7 +158,7 @@ function helsinki_login_content( $data ) {
 	__('Password', 'helsinki-privatewebsite'),
 	__('Remember me', 'helsinki-privatewebsite'),
 	__('Login', 'helsinki-privatewebsite'),
-	isset($query) ? $query : esc_attr(home_url()),
+	!empty($query) ? $query : esc_attr(home_url()),
 	function_exists('pll_current_language') ? pll_current_language('locale') : '',
 	__('Lost your password?', 'helsinki-privatewebsite')
 	);
