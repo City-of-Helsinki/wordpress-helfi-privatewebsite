@@ -7,6 +7,7 @@ define(__NAMESPACE__ . '\\PAGE_SLUG', 'helsinki-privatewebsite-settings');
 add_action( 'admin_init', __NAMESPACE__ . '\\privatewebsite_register_settings');
 add_action( 'admin_menu', __NAMESPACE__ . '\\privatewebsite_settings_page' );
 add_action( 'helsinki_privatewebsite_settings_tab_panel', __NAMESPACE__ . '\\privatewebsite_renderTabPanel' );
+add_action( 'helsinki_privatewebsite_init', __NAMESPACE__ . '\\privatewebsite_settings_defaults');
 add_action( 'helsinki_privatewebsite_init', __NAMESPACE__ . '\\privatewebsite_register_polylang_strings');
 
 $tabs = array();
@@ -65,6 +66,23 @@ function privatewebsite_sanitizeSettings( $option ) {
     }
 }
 
+function privatewebsite_settings_defaults() {
+    $settings = get_option(PAGE_SLUG, array());
+    if (empty($settings)) {
+        $config = include PLUGIN_PATH . 'config/settings/options.php';
+        $defaults = array();
+        foreach ($config as $tab) {
+            foreach($tab as $section) {
+                foreach($section['options'] as $option) {
+                    if (isset($option['default'])) {
+                        $defaults[$option['id']] = $option['default'];
+                    }
+                }
+            }
+        }
+        add_option(PAGE_SLUG, $defaults);
+    } 
+}
 
 function privatewebsite_register_settings() {
     $settings = include PLUGIN_PATH . 'config/settings/options.php';
@@ -123,9 +141,9 @@ function privatewebsite_settings_input(array $args) {
     if (isset($settings[$args['id']])) {
         $option = $settings[$args['id']];
     }
-    if (empty($option) && isset($args['default'])) {
+    /*if (empty($option) && isset($args['default'])) {
         $option = $args['default'];
-    }
+    }*/
     $value = '';
 
     if (isset($option)) {
