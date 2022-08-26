@@ -132,7 +132,7 @@ function helsinki_login_content( $data ) {
 	}
     
     $parts[] = sprintf('
-	<form name="loginform" id="loginform" action="/wp-login.php" method="post">
+	<form name="loginform" id="loginform" action="%s" method="post">
 		<div class="hds-text-input login-username">
 			<label class="hds-text-input__label" for="user_login">%s</label>
 			<input type="text" name="log" id="user_login" autocomplete="username" class="input hds-text-input__input" value="" size="20">
@@ -153,6 +153,7 @@ function helsinki_login_content( $data ) {
 			<a href="/wp-login.php?wp_lang=%s&action=lostpassword">%s</a>
 		</div>
 	</form>',
+	home_url('/wp-login.php'),
 	__('Username or e-mail', 'helsinki-privatewebsite'),
 	__('Password', 'helsinki-privatewebsite'),
 	__('Remember me', 'helsinki-privatewebsite'),
