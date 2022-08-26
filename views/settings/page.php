@@ -4,6 +4,7 @@ $selected_tab = $_GET['tab'] ?? 'general';
 $selected_panel = $tabs[$selected_tab] ?? array();
 $admin_url = admin_url( 'admin.php' );
 ?>
+<?php settings_errors(); ?>
 <section id="helsinki-privatewebsite-settings" class="settings">
 	<header class="settings__header">
 		<h1 class="settings__title">

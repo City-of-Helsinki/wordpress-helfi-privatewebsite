@@ -123,7 +123,7 @@ function privatewebsite_settings_input(array $args) {
     if (isset($settings[$args['id']])) {
         $option = $settings[$args['id']];
     }
-    if (!isset($option) && isset($args['default'])) {
+    if (empty($option) && isset($args['default'])) {
         $option = $args['default'];
     }
     $value = '';
