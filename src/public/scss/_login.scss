@@ -44,9 +44,6 @@ body {
                 input {
                     &[type="text"], &[type="password"] {
 
-                        &:focus {
-                            box-shadow: 0 0 0 var(--outline-width) var(--primary-color) !important;
-                        }
                     }
                 }
 
@@ -55,8 +52,8 @@ body {
                         &:checked {
                             + label {
                                 &:after {
-                                    background-color: var(--primary-color);
-                                    border-color: var(--primary-color);
+                                    background-color: $black;
+                                    border-color: $black;
                                 }
                             }
                         }
