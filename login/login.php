@@ -166,37 +166,16 @@ function helsinki_login_content( $data ) {
 	$privatewebsite_settings = get_option('helsinki-privatewebsite-settings', array());
 
 	if (function_exists('pll__')) {
-		if (isset($privatewebsite_settings['custom-content-heading'])) {
-			$privatewebsite_settings['custom-content-heading'] = pll__($privatewebsite_settings['custom-content-heading']);
-		}
-		if (isset($privatewebsite_settings['custom-content-content'])) {
-			$privatewebsite_settings['custom-content-content'] = pll__($privatewebsite_settings['custom-content-content']);
-		}
-		if (isset($privatewebsite_settings['custom-content-link1-text'])) {
-			$privatewebsite_settings['custom-content-link1-text'] = pll__($privatewebsite_settings['custom-content-link1-text']);
-		}
-		if (isset($privatewebsite_settings['custom-content-link1-url'])) {
-			$privatewebsite_settings['custom-content-link1-url'] = pll__($privatewebsite_settings['custom-content-link1-url']);
-		}
-		if (isset($privatewebsite_settings['custom-content-link2-text'])) {
-			$privatewebsite_settings['custom-content-link2-text'] = pll__($privatewebsite_settings['custom-content-link2-text']);
-		}
-		if (isset($privatewebsite_settings['custom-content-link2-url'])) {
-			$privatewebsite_settings['custom-content-link2-url'] = pll__($privatewebsite_settings['custom-content-link2-url']);
+		if (isset($privatewebsite_settings['wp_login-page-content'])) {
+			$privatewebsite_settings['wp_login-page-content'] = pll__($privatewebsite_settings['wp_login-page-content']);
 		}
 	}
 
 	$parts[] = sprintf(
 		'<div class="login-additional-info">
 			%s
-			%s
-			%s
-			%s
 		</div>',
-		isset($privatewebsite_settings['custom-content-heading']) && !empty($privatewebsite_settings['custom-content-heading']) ? '<h2>' . $privatewebsite_settings['custom-content-heading'] . '</h2>' : '',
-		isset($privatewebsite_settings['custom-content-content']) && !empty($privatewebsite_settings['custom-content-content']) ? '<p>' . $privatewebsite_settings['custom-content-content'] . '</p>' : '',
-		isset($privatewebsite_settings['custom-content-link1-text']) && !empty($privatewebsite_settings['custom-content-link1-text']) && isset($privatewebsite_settings['custom-content-link1-url']) && !empty($privatewebsite_settings['custom-content-link1-url']) ? '<a href="'. $privatewebsite_settings['custom-content-link1-url'] .'">' . $privatewebsite_settings['custom-content-link1-text'] . '</a>' : '',
-		isset($privatewebsite_settings['custom-content-link2-text']) && !empty($privatewebsite_settings['custom-content-link2-text']) && isset($privatewebsite_settings['custom-content-link2-url']) && !empty($privatewebsite_settings['custom-content-link2-url']) ? '<a href="'. $privatewebsite_settings['custom-content-link2-url'] .'">' . $privatewebsite_settings['custom-content-link2-text'] . '</a>' : ''
+		isset($privatewebsite_settings['wp_login-page-content']) && !empty($privatewebsite_settings['wp_login-page-content']) ? wpautop($privatewebsite_settings['wp_login-page-content']) : '',
 	);
 
 

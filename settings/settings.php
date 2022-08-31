@@ -58,7 +58,12 @@ function privatewebsite_sanitizeSettings( $option ) {
     if ( is_array( $option ) ) {
         $out = array();
         foreach ($option as $key => $value) {
-            $out[$key] = sanitize_text_field( $value );
+            if (str_starts_with($key, 'wp_')) {
+                $out[$key] = wp_kses_post( $value );
+            }
+            else {
+                $out[$key] = sanitize_text_field( $value );
+            }
         }
         return $out;
     } else {
@@ -152,7 +157,7 @@ function privatewebsite_settings_input(array $args) {
                 $value = 'checked';
             }
         }
-        else if ($args['type'] === 'textarea') {
+        else if ($args['type'] === 'textarea' || $args['type'] === 'editor') {
             $value = esc_attr($option);
         }
         else {
@@ -171,6 +176,16 @@ function privatewebsite_settings_input(array $args) {
             $args['id'],
             $value,
             $description
+        );
+    }
+    else if ($args['type'] === 'editor') {
+        wp_editor(
+            html_entity_decode($value),
+            $args['id'],
+            array(
+                'textarea_name' => $args['page'] . '[' . $args['id'] . ']',
+                'media_buttons' => false
+            )
         );
     }
     else {

@@ -76,6 +76,10 @@ body {
 
                 * {
                     margin-bottom: spacing('s');
+
+                    &:first-child {
+                        margin-top: spacing('4-xl');
+                    }
                 }
             }
 

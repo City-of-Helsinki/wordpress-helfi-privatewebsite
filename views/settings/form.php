@@ -4,7 +4,7 @@
 		do_settings_sections( $page );
 		submit_button(
 			__( 'Save settings', 'helsinki-privatewebsite' ),
-			'small',
+			'primary',
 			'',
 			true,
 			null
