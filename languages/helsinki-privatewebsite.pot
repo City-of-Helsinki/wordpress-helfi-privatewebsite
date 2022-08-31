@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Helsinki Private Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 11:25+0000\n"
+"POT-Creation-Date: 2022-08-31 09:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -20,16 +20,17 @@ msgstr ""
 msgid "Broomu Digitals"
 msgstr ""
 
-#: login/login.php:220 login/login.php:233 login/login.php:246
+#: login/login.php:202 login/login.php:215 login/login.php:228
 msgid "Close notification"
 msgstr ""
 
 #: config/settings/options.php:21
 msgid ""
-"Direct access to media files will be blocked if the user is not logged in."
+"Direct access to media files will be blocked if the user is not logged in. "
+"Access will still be enabled for image files (png/jpg/gif)."
 msgstr ""
 
-#: login/login.php:244
+#: login/login.php:226
 msgid "Error logging in"
 msgstr ""
 
@@ -42,7 +43,7 @@ msgid "General"
 msgstr ""
 
 #. Name of the plugin
-#: settings/settings.php:16 settings/settings.php:17 views/settings/page.php:10
+#: settings/settings.php:17 settings/settings.php:18 views/settings/page.php:11
 msgid "Helsinki Private Website"
 msgstr ""
 
@@ -60,35 +61,24 @@ msgid ""
 "from the String translations -page."
 msgstr ""
 
-#: login/login.php:245
+#: login/login.php:227
 msgid "Incorrect username, e-mail or password."
 msgstr ""
 
-#: config/settings/options.php:41
-msgid "Info Content"
-msgstr ""
-
-#: config/settings/options.php:36
-msgid "Info Heading"
-msgstr ""
-
-#: config/settings/options.php:30
-msgid "Info Section Heading & Content"
-msgstr ""
-
-#: login/index.php:11 login/login.php:126 login/login.php:157
+#: login/index.php:11 login/index.php:16 login/login.php:128
+#: login/login.php:160
 msgid "Login"
 msgstr ""
 
-#: config/settings/options.php:12
+#: config/settings/options.php:30
 msgid "Login page"
 msgstr ""
 
-#: login/login.php:301
+#: login/login.php:284
 msgid "Logout"
 msgstr ""
 
-#: login/login.php:160
+#: login/login.php:163
 msgid "Lost your password?"
 msgstr ""
 
@@ -96,23 +86,23 @@ msgstr ""
 msgid "Manage which plugin features are enabled."
 msgstr ""
 
-#: login/login.php:215 login/login.php:228 login/login.php:241
+#: login/login.php:197 login/login.php:210 login/login.php:223
 msgid "Notification"
 msgstr ""
 
-#: login/login.php:155
+#: login/login.php:158
 msgid "Password"
 msgstr ""
 
-#: login/login.php:218
+#: login/login.php:200
 msgid "Password change requested"
 msgstr ""
 
-#: login/login.php:231
+#: login/login.php:213
 msgid "Password has been changed"
 msgstr ""
 
-#: login/login.php:232
+#: login/login.php:214
 msgid "Please login with your username and your new password."
 msgstr ""
 
@@ -120,7 +110,11 @@ msgstr ""
 msgid "Protect media files"
 msgstr ""
 
-#: login/login.php:156
+#: config/settings/options.php:12
+msgid "Protect website"
+msgstr ""
+
+#: login/login.php:159
 msgid "Remember me"
 msgstr ""
 
@@ -128,10 +122,14 @@ msgstr ""
 msgid "Save settings"
 msgstr ""
 
-#: login/login.php:154
+#: config/settings/options.php:36
+msgid "Text"
+msgstr ""
+
+#: login/login.php:157
 msgid "Username or e-mail"
 msgstr ""
 
-#: login/login.php:219
+#: login/login.php:201
 msgid "We have sent e-mail instructions for changing the password."
 msgstr ""
