@@ -209,9 +209,14 @@ function privatewebsite_register_polylang_strings() {
         foreach($config as $tab) {
             foreach($tab as $section) {
                 foreach($section['options'] as $option) {
-                    if ($option['type'] === 'text' || $option['type'] === 'textarea') {
+                    if ($option['type'] === 'text') {
                         if (isset($settings[$option['id']])) {
                             pll_register_string($option['id'], $settings[$option['id']], 'helsinki-privatewebsite', false);
+                        }
+                    }
+                    else if ($option['type'] === 'textarea' || $option['type'] === 'editor') {
+                        if (isset($settings[$option['id']])) {
+                            pll_register_string($option['id'], $settings[$option['id']], 'helsinki-privatewebsite', true);
                         }
                     }
                 }
