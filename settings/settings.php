@@ -184,7 +184,10 @@ function privatewebsite_settings_input(array $args) {
             $args['id'],
             array(
                 'textarea_name' => $args['page'] . '[' . $args['id'] . ']',
-                'media_buttons' => false
+                'media_buttons' => false,
+                'tinymce' => array(
+                    'toolbar1' => 'formatselect,bold,italic,bullist,numlist,link',
+                )
             )
         );
     }
