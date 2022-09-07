@@ -32,6 +32,11 @@ return array(
             'description' => __('Include additional information on the login page. Add possible translations from the String translations -page.', 'helsinki-privatewebsite'),
             'options' => array(
                 array(
+                    'id' => 'custom-content-heading',
+                    'name' => __('Heading', 'helsinki-privatewebsite'),
+                    'type' => 'text'
+                ),
+                array(
                     'id' => 'wp_login-page-content',
                     'name' => __('Text', 'helsinki-privatewebsite'),
                     'type' => 'editor'

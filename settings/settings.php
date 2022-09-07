@@ -186,7 +186,7 @@ function privatewebsite_settings_input(array $args) {
                 'textarea_name' => $args['page'] . '[' . $args['id'] . ']',
                 'media_buttons' => false,
                 'tinymce' => array(
-                    'toolbar1' => 'formatselect,bold,italic,bullist,numlist,link',
+                    'toolbar1' => 'bold,italic,bullist,numlist,link',
                 )
             )
         );
