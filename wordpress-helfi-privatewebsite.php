@@ -45,7 +45,7 @@ function plugin_deactivate() {
 	 * Media Access
 	 */
 	require_once 'media-access/manage.php';
-	privatewebsite_remove_media_restriction_file();
+	privatewebsite_remove_media_restriction_files();
 }
 
 

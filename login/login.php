@@ -269,6 +269,9 @@ function helsinki_login_get_scheme() {
 	if (function_exists('helsinki_theme_mod')) {
 		$current_scheme = helsinki_theme_mod('helsinki_general_style', 'scheme');
 	}
+	if (function_exists('helsinki_default_scheme')) {
+		$current_scheme = $current_scheme ?: helsinki_default_scheme();
+	}
 	return $current_scheme;
 }
 

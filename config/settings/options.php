@@ -14,13 +14,6 @@ return array(
                     'description' => __('Forces users to login to view website content.', 'helsinki-privatewebsite'),
                     'default' => 'on'
                 ),
-                array(
-                    'id' => 'protect-media-files',
-                    'name' => __('Protect media files', 'helsinki-privatewebsite'),
-                    'type' => 'checkbox',
-                    'description' => __('Direct access to media files will be blocked if the user is not logged in. Access will still be enabled for image files (png/jpg/gif).', 'helsinki-privatewebsite'),
-                    'default' => 'on'
-                ),
             ),
         ),
 	),
