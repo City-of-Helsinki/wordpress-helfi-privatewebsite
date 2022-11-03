@@ -22,10 +22,12 @@ Further configuration to the login page can be performed in the `Helsinki Privat
 ## Conflicts
 Because the plugin controls access to media files, any other plugin that is also intended for restricting media file -access will most likely conflict with this plugin. It is recommended to disable and/or remove any such plugins before installing this one.
 
+## Development
+
 ### Assets
 (S)CSS and JS source files are stored in `/src`. Asset complitation is done with [Gulp](https://gulpjs.com/) and the processed files can be found in `/assets`.
 
 Install dependencies with `npm install`. Build assets with `gulp scripts` and `gulp styles` or watch changes with `gulp watch`.
 
 ## Collaboration
-Raise [issues](https://github.com/City-of-Helsinki/wordpress-helfi-linkedevents/issues) for found bugs or development ideas. Feel free to send [pull requests](https://github.com/City-of-Helsinki/wordpress-helfi-linkedevents/pulls) for bugfixes and new or improved features.
+Raise [issues](https://github.com/City-of-Helsinki/wordpress-helfi-privatewebsite/issues) for found bugs or development ideas. Feel free to send [pull requests](https://github.com/City-of-Helsinki/wordpress-helfi-privatewebsite/pulls) for bugfixes and new or improved features.
