@@ -133,13 +133,17 @@ function helsinki_login_content( $data ) {
     
     $parts[] = sprintf('
 	<form name="loginform" id="loginform" action="%s" method="post">
-		<div class="hds-text-input login-username">
+		<div>
 			<label class="hds-text-input__label" for="user_login">%s</label>
-			<input type="text" name="log" id="user_login" autocomplete="username" class="input hds-text-input__input" value="" size="20">
+			<div class="hds-text-input hds-text-input__input-wrapper login-username">
+				<input type="text" name="log" id="user_login" autocomplete="username" class="input hds-text-input__input" value="" size="20">
+			</div>
 		</div>
-		<div class="hds-text-input login-password">
+		<div>
 			<label class="hds-text-input__label" for="user_pass">%s</label>
-			<input type="password" name="pwd" id="user_pass" autocomplete="current-password" class="input hds-text-input__input" value="" size="20">
+			<div class="hds-text-input hds-text-input__input-wrapper login-password">
+				<input type="password" name="pwd" id="user_pass" autocomplete="current-password" class="input hds-text-input__input" value="" size="20">
+			</div>
 		</div>
 		<div class="hds-checkbox login-remember">
 			<input name="rememberme" type="checkbox" id="rememberme" value="forever" class="hds-checkbox__input">
@@ -150,7 +154,7 @@ function helsinki_login_content( $data ) {
 			<input type="hidden" name="redirect_to" value="%s">
 		</div>
 		<div>
-			<a href="/wp-login.php?wp_lang=%s&action=lostpassword">%s</a>
+			<a href="%s">%s</a>
 		</div>
 	</form>',
 	home_url('/wp-login.php'),
@@ -159,7 +163,7 @@ function helsinki_login_content( $data ) {
 	__('Remember me', 'helsinki-privatewebsite'),
 	__('Login', 'helsinki-privatewebsite'),
 	!empty($query) ? $query : esc_attr(home_url()),
-	function_exists('pll_current_language') ? pll_current_language('locale') : '',
+	home_url('/wp-login.php?wp_lang=' . (function_exists('pll_current_language') ? pll_current_language('locale') : '') .'&action=lostpassword'),
 	__('Lost your password?', 'helsinki-privatewebsite')
 	);
 
