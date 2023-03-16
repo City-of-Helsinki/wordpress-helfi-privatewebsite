@@ -157,13 +157,13 @@ function helsinki_login_content( $data ) {
 			<a href="%s">%s</a>
 		</div>
 	</form>',
-	home_url('/wp-login.php'),
+	get_site_url(null, '/wp-login.php'),
 	__('Username or e-mail', 'helsinki-privatewebsite'),
 	__('Password', 'helsinki-privatewebsite'),
 	__('Remember me', 'helsinki-privatewebsite'),
 	__('Login', 'helsinki-privatewebsite'),
 	!empty($query) ? $query : esc_attr(home_url()),
-	home_url('/wp-login.php?wp_lang=' . (function_exists('pll_current_language') ? pll_current_language('locale') : '') .'&action=lostpassword'),
+	get_site_url(null, '/wp-login.php?wp_lang=' . (function_exists('pll_current_language') ? pll_current_language('locale') : '') .'&action=lostpassword'),
 	__('Lost your password?', 'helsinki-privatewebsite')
 	);
 
