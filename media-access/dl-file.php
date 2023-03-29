@@ -37,6 +37,12 @@ if (ob_get_level()) {
 //https://gist.github.com/hakre/1552239#gistcomment-1439472
 ob_start();
 $wp_load_path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
+if ( !file_exists($wp_load_path . 'wp-load.php' )) {
+  $wp_load_path = preg_replace( '/content(?!.*content).*/', 'wp/', __DIR__ );
+  if ( !file_exists($wp_load_path . 'wp-load.php') ) {
+    return false;
+  }
+}
 require_once($wp_load_path . 'wp-load.php');
 require_once ABSPATH . WPINC . '/formatting.php';
 require_once ABSPATH . WPINC . '/capabilities.php';
