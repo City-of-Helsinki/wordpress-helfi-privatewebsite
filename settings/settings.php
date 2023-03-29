@@ -14,8 +14,8 @@ $tabs = array();
 
 function privatewebsite_settings_page() {
     add_menu_page(
-        __('Helsinki Private Website', 'helsinki-privatewebsite'),
-        __('Helsinki Private Website', 'helsinki-privatewebsite'),
+        __('Private Website', 'helsinki-privatewebsite'),
+        __('Private Website', 'helsinki-privatewebsite'),
         apply_filters(
             'helsinki_private_website_settings_page_capability_requirement',
             'manage_options'
