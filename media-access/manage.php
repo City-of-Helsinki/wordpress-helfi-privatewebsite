@@ -3,6 +3,13 @@
 namespace CityOfHelsinki\WordPress\PrivateWebsite;
 
 add_action('helsinki_privatewebsite_init', __NAMESPACE__ . '\\privatewebsite_check_media_restriction_file');
+add_action('do_feed', __NAMESPACE__ . '\\privatewebsite_disable_rss_feeds', 1);
+add_action('do_feed_rdf', __NAMESPACE__ . '\\privatewebsite_disable_rss_feeds', 1);
+add_action('do_feed_rss', __NAMESPACE__ . '\\privatewebsite_disable_rss_feeds', 1);
+add_action('do_feed_rss2', __NAMESPACE__ . '\\privatewebsite_disable_rss_feeds', 1);
+add_action('do_feed_atom', __NAMESPACE__ . '\\privatewebsite_disable_rss_feeds', 1);
+add_action('do_feed_rss2_comments', __NAMESPACE__ . '\\privatewebsite_disable_rss_feeds', 1);
+add_action('do_feed_atom_comments', __NAMESPACE__ . '\\privatewebsite_disable_rss_feeds', 1);
 
 function privatewebsite_upload_dir_path() {
     return wp_upload_dir()['basedir'];
@@ -43,5 +50,16 @@ function privatewebsite_remove_media_restriction_files() {
     if (file_exists($path . '.htaccess')) {
         unlink($path . '.htaccess' );
         unlink($path . 'dl-file.php' );
+    }
+}
+
+function privatewebsite_disable_rss_feeds() {
+    $settings = get_option('helsinki-privatewebsite-settings', array());
+    if (isset($settings['login-page-enabled'])) {
+        $login_page_enabled = $settings['login-page-enabled'];
+    }
+
+    if (isset($login_page_enabled) && $login_page_enabled === 'on') {
+        wp_die( __('No feed available, please visit our <a href="'. get_bloginfo('url') .'">homepage</a>!') );
     }
 }
