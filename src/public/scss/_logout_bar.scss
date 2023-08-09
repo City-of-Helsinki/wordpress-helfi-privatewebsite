@@ -4,18 +4,16 @@
 
     .hds-container {
         flex-flow: row-reverse;
+        padding-left: spacing('m');
+        padding-right: spacing('m');
 
-        @include breakpointMax(l) {
+        @include breakpointMax(m) {
             padding-left: spacing(s);
             padding-right: spacing(s);
         }
 
         .logout__link {
             padding: spacing('s') 0;
-
-            @include breakpoint('l') {
-                padding: spacing('s') spacing('l');
-            }
 
             a {
                 color: $white;
