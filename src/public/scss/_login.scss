@@ -101,9 +101,14 @@ body {
 
                         .hds-icon {
                             transform: none;
+                            background-color: transparent;
 
                             svg {
                                 fill: var(--notification-icon-color);
+
+                                &.mask-icon {
+                                    background-color: var(--notification-icon-color);
+                                }
                             }
                         }
                     }
