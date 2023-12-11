@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Helsinki Private Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-24 06:12+0000\n"
-"PO-Revision-Date: 2023-03-22 07:53+0000\n"
+"PO-Revision-Date: 2023-12-11 06:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: Suomi\n"
 "Language: fi\n"
@@ -53,6 +53,10 @@ msgstr "Vaatii kirjautumisen sivuston sisällön esittämiseksi."
 msgid "https://www.broomudigitals.fi"
 msgstr "https://www.broomudigitals.fi"
 
+#: login/login.php:268
+msgid "Image: "
+msgstr "Kuva: "
+
 #: config/settings/options.php:25
 msgid ""
 "Include additional information on the login page. Add possible translations "
@@ -74,7 +78,7 @@ msgstr "Kirjaudu sisään"
 msgid "Login page"
 msgstr "Kirjautumissivu"
 
-#: login/login.php:296
+#: login/login.php:297
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
