@@ -31,8 +31,25 @@ body {
             margin-top: 32px;
             margin-bottom: 32px;
 
-            .grid {
+            .login_grid {
+                display: flex;
                 margin: 0;
+                flex-wrap: wrap;
+
+                @include breakpoint('m') {
+                    grid-gap: 64px;
+                    flex-wrap: nowrap;
+                }
+
+                .grid__column {
+                    flex-basis: 100%;
+                    flex-grow: 1;
+                    flex-shrink: 0;
+
+                    @include breakpoint('m') {
+                        flex-basis: 0;
+                    }
+                }
             }
 
             #loginform {
