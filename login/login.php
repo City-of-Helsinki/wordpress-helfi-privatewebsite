@@ -189,7 +189,7 @@ function helsinki_login_content( $data ) {
 
 
 	printf(
-		'<div class="grid m-up-2">
+		'<div class="login_grid m-up-2">
 			<div class="grid__column">%s</div>
 			<div class="grid__column">%s</div>
 		</div>',
@@ -263,8 +263,9 @@ function helsinki_login_notification_template() {
 
 function helsinki_login_image() {
 	return sprintf(
-		'<img class="decoration" alt="" src="%s" width="823" height="1168">',
-		trailingslashit( PLUGIN_URL ) . 'assets/images/login.png'
+		'<figure><img class="decoration" alt="" src="%s" width="823" height="1168"><figcaption class="wp-caption-text">%s</figcaption></figure>',
+		trailingslashit( PLUGIN_URL ) . 'assets/images/login.png',
+		__( 'Image: ', 'helsinki-privatewebsite') . 'Lille Santanen'
 	);
 }
 
