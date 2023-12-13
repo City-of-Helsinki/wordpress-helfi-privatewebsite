@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Helsinki Private Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-22 07:53+0000\n"
+"POT-Creation-Date: 2023-12-11 06:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -53,6 +53,10 @@ msgstr ""
 msgid "https://www.broomudigitals.fi"
 msgstr ""
 
+#: login/login.php:268
+msgid "Image: "
+msgstr ""
+
 #: config/settings/options.php:25
 msgid ""
 "Include additional information on the login page. Add possible translations "
@@ -72,7 +76,7 @@ msgstr ""
 msgid "Login page"
 msgstr ""
 
-#: login/login.php:296
+#: login/login.php:297
 msgid "Logout"
 msgstr ""
 
