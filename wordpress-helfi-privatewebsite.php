@@ -15,18 +15,27 @@
 
 namespace CityOfHelsinki\WordPress\PrivateWebsite;
 
-/**
- * Constants
-*/
-define( __NAMESPACE__ . '\\PLUGIN_VERSION', '1.6.0' );
-define( __NAMESPACE__ . '\\PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
-define( __NAMESPACE__ . '\\PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( __NAMESPACE__ . '\\PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-  
-
 if ( ! defined( 'ABSPATH' ) ) {
   exit;
 }
+
+/**
+ * Constants
+ */
+function define_constants( string $file ): void {
+    if ( ! function_exists('get_plugin_data') ) {
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	}
+
+    $plugin_data = get_plugin_data( $file, false, false );
+
+    define( __NAMESPACE__ . '\\PLUGIN_VERSION', $plugin_data['Version'] );
+    define( __NAMESPACE__ . '\\PLUGIN_PATH', plugin_dir_path( $file ) );
+    define( __NAMESPACE__ . '\\PLUGIN_URL', plugin_dir_url( $file ) );
+    define( __NAMESPACE__ . '\\PLUGIN_BASENAME', plugin_basename( $file ) );
+}
+
+define_constants( __FILE__ );
 
 register_activation_hook( __FILE__, __NAMESPACE__ . '\\plugin_activate' );
 function plugin_activate() {
