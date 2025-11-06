@@ -3,10 +3,10 @@
 /**
   * Plugin Name: Helsinki Private Website
   * Description: Hides the website content behind a login.
-  * Version: 1.8.1
+  * Version: 1.9.0
   * License: GPLv3
   * Requires at least: 5.7
-  * Requires PHP:      7.1
+  * Requires PHP: 8.2
   * Author: Broomu Digitals
   * Author URI: https://www.broomudigitals.fi
   * Text Domain: helsinki-privatewebsite
@@ -75,6 +75,11 @@ function init() {
 	 * Assets
 	 */
 	require_once 'class/assets.php';
+
+	/**
+	 * Integrations
+	 */
+	require_once 'integrations/wp-helfi-cookie-consent/init.php';
 
 	//spl_autoload_register( __NAMESPACE__ . '\\autoloader' );
 
