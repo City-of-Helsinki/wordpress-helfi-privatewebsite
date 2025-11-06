@@ -76,6 +76,11 @@ function init() {
 	 */
 	require_once 'class/assets.php';
 
+	/**
+	 * Integrations
+	 */
+	require_once 'integrations/wp-helfi-cookie-consent/init.php';
+
 	//spl_autoload_register( __NAMESPACE__ . '\\autoloader' );
 
 	/**
