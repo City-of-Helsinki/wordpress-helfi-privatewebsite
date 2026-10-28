@@ -1,10 +1,12 @@
 body {
     &.login {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background-color: #EFEFF0;
+      background-color: $light-gray;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
 
         header {
             #mobile-panel {
@@ -17,7 +19,7 @@ body {
                 }
 
                 .navigation__languages {
-                    background-color: white;
+                    background-color: $white;
 
                     .languages.menu {
                         grid-gap: 0;
@@ -135,7 +137,7 @@ body {
 
         footer {
             .hds-koros {
-                background-color: #EFEFF0;
+                background-color: $light-gray;
             }
 
             .footer__bottom {
